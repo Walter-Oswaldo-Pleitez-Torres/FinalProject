@@ -5,10 +5,10 @@ using namespace std;
 //FUNCIONES
 void InicioSesion(string Usuario, string Clave);
 void Tiempo();
+//void Ordenar(string, int, string);
 
 struct Fecha
 {
-    int Year;
     string Mes[12] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
     int Semanas[4];
     string Dias[7] = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
@@ -21,7 +21,7 @@ int main()
 {
 
     string Usuario, Clave;
-    int Opcion, Continuar=1;
+    int Opcion, Continuar = 1;
 
     cout << "----------------Restaurante Sabor Casero----------------" << endl;
     cout << endl;
@@ -32,7 +32,7 @@ int main()
 
         switch (Opcion)
         {
-        case 0://OPCION SALIR
+        case 0: //OPCION SALIR
             cout << "Para confirmar Salida del Sistema Ingrese 0, sino Ingrese 1: " << endl;
             cin >> Continuar;
             break;
@@ -84,13 +84,12 @@ void InicioSesion(string Usuario, string Clave)
 void Tiempo()
 {
     struct Fecha CurrentYear;
-    int YearInicio = 2023, Continuar, ContadorSemana = 0;
+    //int* Year;
+    int YearInicio = 2023, Continuar=1, ContadorSemana = 0;
     string IdentificadorMes, DiaActual;
 
     do
     {
-        int Continuar = 1;
-        CurrentYear.Year = YearInicio;
 
         for (int i = 0; i < 12; i++)
         { //LLEVA EL CONTEO DE LOS MESES DEL AÑO
@@ -109,7 +108,7 @@ void Tiempo()
                     ++ContadorDia;
                     //IDENTIFICADOR DIA ACTUAL Y FECHA COMPLETA
                     DiaActual = CurrentYear.Dias[k];
-                    cout << "Fecha: " << DiaActual << " " << ContadorDia << "/" << IdentificadorMes << endl;
+                    cout << "Fecha: " << DiaActual << " " << ContadorDia << "/" << IdentificadorMes << "/" << YearInicio << endl;
 
                 } //GENERADOR DE DIAS DE LA SEMANA
                 cout << endl;
@@ -123,15 +122,24 @@ void Tiempo()
 
         if (Continuar == 1)
         {
+            cout<<endl;
+            cout<<"*********************************************************"<<endl;
             cout << "El programa seguira en produccion por otros 12 meses" << endl;
             YearInicio++;
-            cout << "Estos nuevos 12 meses pertnecen al Year: "<< YearInicio << endl;
+            cout << "Estos nuevos 12 meses perteneceran al Year: " << YearInicio << endl;
+            cout<<"*********************************************************"<<endl;
+            cout<<endl;
         }
         else
         {
-            cout << "El programa no dara mas continuidad a lo realizado anteriormente. Adios" << endl;
-            cout<<"Sin embargo, podra seguir usandose con el YearInicio que tiene por defecto."<<endl;
-            cout<<"El Year por defecto es: "<<YearInicio<<endl;
+            cout<<endl;
+            cout<<"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"<<endl;
+            cout << "El programa no dara mas continuidad a lo realizado anteriormente." << endl;
+            cout << "Sin embargo, podra seguir usandose con el YearInicio que tiene por defecto." << endl;
+            cout<<"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"<<endl;
+            cout<<endl;
         }
     } while (Continuar == 1); //FIN DE 12 MESES
 } //FIN DE FUNCION TIEMPO
+
+//void Ordenar(string DiaNombre, int DiaNumero, string NombreMes) {}
