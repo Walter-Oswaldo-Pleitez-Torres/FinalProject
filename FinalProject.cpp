@@ -246,7 +246,7 @@ void Ordenar(int Dia, string Mes, int Year)
 { //RECEPCION DE ORDENES
     struct Inventario Menu;
     int ContinuarOrden = 1;
-    int CantPersonas=0, CantProductos, CantItem;
+    int CantPersonas = 0, CantProductos, CantItem;
     int ContOrdenes = 0, ContPedidos = 0, ContProductos = 0;
     int ItemPosicion;
     float ItemPrecio, ItemPago, SumaItemPago, PagoOrden = 0;
@@ -267,7 +267,7 @@ void Ordenar(int Dia, string Mes, int Year)
         {
             ContPedidos++; //SERVIRA EN LA ESCRITURA DEL FILE
             MenuDesplegable();
-            cout << "*************** Cliente: " << i + 1 << "***************" << endl;
+            cout << "**************** Cliente: " << i + 1 << "***************" << endl;
             cout << "Cuantos Productos del Menu llaman su atencion: " << endl;
             cin >> CantProductos;
 
@@ -382,12 +382,12 @@ void Factura(int CantProductos, string CarritoNombre[], float CarritoPrecio[], f
 
 float MontoTotalOrden(float Totales[], int CantClientes)
 {
-    float SumaTotalPagar;
+    float SumaTotalPagar = 0;
     for (int i = 0; i < CantClientes; i++)
     {
         SumaTotalPagar = SumaTotalPagar + Totales[i];
     }
-    cout<<"PRUEBA DE RESULTADO DE FUNCION: "<<SumaTotalPagar<<endl;
+    cout << "PRUEBA DE RESULTADO DE FUNCION: " << SumaTotalPagar << endl;
 
     return SumaTotalPagar;
 }
