@@ -48,7 +48,7 @@ int main()
         int Year, Continuar2 = 1;
 
         cout << "CONFIGURACIONES INICIALES PARA EL PROGRAMA 'MALWARE' DE REGISTRO DE VENTAS" << endl;
-        cout << "Ingrese el Year de inicio de operaciones: " << endl; //DEFINIR YEAR CADA 12 MESES
+        cout << "Ingrese el Year de Inicio o Reinicio de operaciones: " << endl; //DEFINIR YEAR CADA 12 MESES
         cin >> Year;
         cout << endl;
         cout << endl;
@@ -77,9 +77,27 @@ int main()
                     {
                     case 0: //ROMPER EL TIEMPO SIMULADO
                         cout << endl;
-                        cout << "OPCION SECRETA DE FORMATEO" << endl;
-                        cout << "Seguira rompiendo el tiempo, Ingrese 0 " << endl;
+                        cout << "ALERTA--ALERTA--ALERTA--ALERTA--ALERTA--ALERTA--ALERTA--ALERTA" << endl;
+                        cout << "+++++++++++++++ OPCION SECRETA DE FORMATEO +++++++++++++++++++" << endl;
+                        cout << "INDICACIONES GENERALES:" << endl;
+                        cout << "1) INGRESAR 0, Para saltar Dia 32" << endl;
+                        cout << "2) INGRESE 0, Hasta que se le pida 'SALTAR YEAR'" << endl;
+                        cout << "3) En 'SALTAR YEAR' Ingrese 0 (SI INGRESA 1 PODRA ELEGIR NUEVO YEAR DE INICIO)" << endl;
+                        cout << "ALERTA--ALERTA--ALERTA--ALERTA--ALERTA--ALERTA--ALERTA--ALERTA" << endl;
                         cin >> Continuar2;
+                        if (Continuar2 == 0)
+                        {
+                            j = 32;
+                            if (j == 32)
+                            {
+                                cout << "----------------------------------------------------------------------" << endl;
+                                cout << "Viajara en el tiempo! Al final Debera CONFIRMAR si AVANZARA al siguiente YEAR" << endl;
+                                cout << "RECUERDE! Para FORMATEAR debe Ingresar 0 en todo el camino" << endl;
+                                i = 13;
+                                cout << "----------------------------------------------------------------------" << endl;
+                            }
+                            //cout<<"INGRESE CERO HASTA QUE LE APAREZCA  UN MENSAJE DE CIERRE DE FORMATEO DEL PROGRAMA"<<endl;
+                        }
                         cout << endl;
                         break;
                     case 1: //Sistema de Ventas
@@ -121,24 +139,23 @@ int main()
             } //FIN BUCLE DE 1 MES
         }     //FIN BUCLE DE 12 MESES
 
-        cout << "Si desea Continuar en el siguiente Year, Ingrese 1" << endl;
+        cout << "Si desea 'SALTAR YEAR', Ingrese 1" << endl; //SI INGRESA 0 FORMATEA
         cin >> Continuar1;
 
-        if (Continuar1 == 1) //CONDICION PARA SEGUIR AL SIGUIENTE YEAR
+        if (Continuar1 == 1) //CONDICION PARA SEGUIR AL SIGUIENTE YEAR O FORMATEO
         {
             cout << endl;
             cout << "++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
             cout << "Bienvenido, Podra seguir 12 meses mas " << endl;
             cout << "++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
             cout << endl;
-            cout << "PRUEBA DE NUEVO YEAR: " << Year << endl;
         }
         else
         {
             cout << endl;
-            cout << "---------------------------------------------------" << endl;
+            cout << "--------------------------------------------------------------------------------------------" << endl;
             cout << "El programa dejara de llevar continuidad, sin embargo podra seguir desde el Year por defecto" << endl;
-            cout << "---------------------------------------------------" << endl;
+            cout << "--------------------------------------------------------------------------------------------" << endl;
             cout << endl;
         }
 
@@ -319,7 +336,7 @@ void Ordenar(int Dia, string Mes, int Year)
         cout << " " << endl;
 
         cout << endl;
-        cout << "PERMANECER recibiendo las Ordenes de: " << Dia << "/" << Mes << " Ingrese 1, si desea SALIR Ingrese 0: " << endl;
+        cout << "PERMANECER en las Ordenes del dia Ingrese 1, si desea SALTAR AL SIGUIENTE DIA Ingrese 0: " << endl;
         cout << endl;
         cin >> ContinuarOrden;
     } while (ContinuarOrden == 1); //FIN BUCLE ORDENES
