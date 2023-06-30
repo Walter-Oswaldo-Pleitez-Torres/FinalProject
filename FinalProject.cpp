@@ -1,4 +1,6 @@
 #include <iostream> //RAMA TiempoForma2Funciones PARA HACER PRUEBAS AGREGANDO FUNCIONES
+#include <string>
+#include <fstream>
 
 using namespace std;
 
