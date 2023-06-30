@@ -4,7 +4,6 @@ using namespace std;
 
 struct Fecha
 {
-    int Year = 2023;
     string Mes[12] = {
         "Enero",
         "Febrero",
@@ -19,18 +18,10 @@ struct Fecha
         "Noviembre",
         "Diciembre",
     };
-    string DiasSemana[7] = {
-        "Lunes",
-        "Martes",
-        "Miercoles",
-        "Jueves",
-        "Viernes",
-        "Sabado",
-        "Domingo",
-    };
 };
 
 string NombreMes(struct Fecha, int PosicionesMes); //BUSCADOR DE NOMBRE DE MES
+void Ordenar(int, string, int);                    //RECIBE FECHA Y SE COMIENZA A LLEVAR EL SISTEMA DE VENTAS
 
 int main()
 {
@@ -41,7 +32,7 @@ int main()
         struct Fecha SimulTiempo;
         int Year;
 
-        cout << "Ingrese el Year de inicio de operaciones: " << endl;//DEFINIR YEAR CADA 12 MESES
+        cout << "Ingrese el Year de inicio de operaciones: " << endl; //DEFINIR YEAR CADA 12 MESES
         cin >> Year;
 
         for (int i = 0; i < 12; i++)
@@ -52,7 +43,10 @@ int main()
 
             for (int j = 1; j < 31; j++)
             {
-                cout << "Fecha: " << j << " / " << MesCorriente << " / " << Year << endl;
+                //PRUEBA DE FECHA: cout << "Fecha: " << j << " / " << MesCorriente << " / " << Year << endl;
+                //FUNCION ORDENAR()
+                cout << "----------------BIENVENID@ A RESTAURANTE SABOR CASERO----------------" << endl;
+                cout << endl;
 
             } //FIN BUCLE DE 1 MES
         }     //FIN BUCLE DE 12 MESES
@@ -60,7 +54,7 @@ int main()
         cout << "Si desea Continuar en el siguiente Year, Ingrese 1" << endl;
         cin >> Continuar;
 
-        if (Continuar == 1)
+        if (Continuar == 1) //CONDICION PARA SEGUIR AL SIGUIENTE YEAR
         {
             cout << endl;
             cout << "++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
@@ -129,4 +123,8 @@ string NombreMes(struct Fecha, int PosicionMes)
     PosicionMes++;
 
     return MesActual;
+}
+void Ordenar(int Dia, string Mes, int Year)
+{
+    cout << "Fecha: " << Dia << " / " << Mes << " / " << Year << endl;
 }
