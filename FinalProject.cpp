@@ -2,144 +2,131 @@
 
 using namespace std;
 
-//FUNCIONES
-void InicioSesion(string Usuario, string Clave);
-void Tiempo();
-//void Ordenar(string, int, string);
-
 struct Fecha
 {
-    string Mes[12] = {"Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"};
-    int Semanas[4];
-    string Dias[7] = {"Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"};
+    int Year = 2023;
+    string Mes[12] = {
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+    };
+    string DiasSemana[7] = {
+        "Lunes",
+        "Martes",
+        "Miercoles",
+        "Jueves",
+        "Viernes",
+        "Sabado",
+        "Domingo",
+    };
 };
-/*struct Inventario
-{
-};*/
+
+string NombreMes(struct Fecha, int PosicionesMes); //BUSCADOR DE NOMBRE DE MES
 
 int main()
 {
-
-    string Usuario, Clave;
-    int Opcion, Continuar = 1;
-
-    cout << "----------------Restaurante Sabor Casero----------------" << endl;
-    cout << endl;
-    do
-    {
-        cout << "0) SALIR 1) SISTEMA DE VENTAS  2) ADMINISTRACION" << endl;
-        cin >> Opcion;
-
-        switch (Opcion)
-        {
-        case 0: //OPCION SALIR
-            cout << "Para confirmar Salida del Sistema Ingrese 0, sino Ingrese 1: " << endl;
-            cin >> Continuar;
-            break;
-        case 1: //AREA DE VENTAS
-            cout << "*********** Come con confianza ***********" << endl;
-            cout << "Ingrese el usuario: " << endl;
-            cin >> Usuario;
-            cout << "Ingrese la clave: " << endl;
-            cin >> Clave;
-            InicioSesion(Usuario, Clave);
-            break;
-
-        case 2: //ADMINISTRACION
-            cout << "*********** Come con confianza ***********" << endl;
-            cout << "Ingrese el usuario Administrador: " << endl;
-            cin >> Usuario;
-            cout << "Ingrese la clave de Administrador: " << endl;
-            cin >> Clave;
-
-            break;
-        }
-
-    } while (Continuar == 1);
-
-    return 0;
-}
-
-void InicioSesion(string Usuario, string Clave)
-{
-    string User1 = "user1", Clave1 = "12345";
-    string User2 = "user2", Clave2 = "54321";
-    string User3 = "user3", Clave3 = "56789";
-    bool Acceso1 = (Usuario == User1) && (Clave == Clave1);
-    bool Acceso2 = (Usuario == User2) && (Clave == Clave2);
-    bool Acceso3 = (Usuario == User3) && (Clave == Clave3);
-
-    if ((Acceso1) || (Acceso2) || (Acceso3))
-    {
-        cout << "ACCESO CONCEDIDO" << endl;
-        cout << endl;
-        Tiempo();
-    }
-    else
-    {
-        cout << endl;
-        cout << "ACCESO DENEGADO" << endl;
-    }
-}
-void Tiempo()
-{
-    struct Fecha CurrentYear;
-    //int* Year;
-    int YearInicio = 2023, Continuar=1, ContadorSemana = 0;
-    string IdentificadorMes, DiaActual;
+    int Continuar = 1;
 
     do
     {
+        struct Fecha SimulTiempo;
+        int Year;
+
+        cout << "Ingrese el Year de inicio de operaciones: " << endl;//DEFINIR YEAR CADA 12 MESES
+        cin >> Year;
 
         for (int i = 0; i < 12; i++)
-        { //LLEVA EL CONTEO DE LOS MESES DEL AÑO
-            IdentificadorMes = CurrentYear.Mes[i];
-            int ContadorDia = 0;
-            cout << "Identificador de Mes: " << IdentificadorMes << endl;
+        {
 
-            for (int j = 0; j < 4; j++)
-            { //LLEVA EL CONTEO DE LOS DIAS DEL MES
-                CurrentYear.Mes[j];
-                ContadorSemana = CurrentYear.Semanas[j];
-                //cout << "Contador de Semanas: " <<  << endl;
+            string MesCorriente;
+            MesCorriente = NombreMes(SimulTiempo, i); //ALMACENA EL MES EN QUE SE ENCUENTRA EL SISTEMA DE VENTAS
 
-                for (int k = 0; k < 7; k++)
-                {
-                    ++ContadorDia;
-                    //IDENTIFICADOR DIA ACTUAL Y FECHA COMPLETA
-                    DiaActual = CurrentYear.Dias[k];
-                    cout << "Fecha: " << DiaActual << " " << ContadorDia << "/" << IdentificadorMes << "/" << YearInicio << endl;
+            for (int j = 1; j < 31; j++)
+            {
+                cout << "Fecha: " << j << " / " << MesCorriente << " / " << Year << endl;
 
-                } //GENERADOR DE DIAS DE LA SEMANA
-                cout << endl;
-            } //FIN CONTEO DE 30 DIAS EN CADA MES
-            cout << endl;
-        } //FIN CONTEO DE 12 MESES EN 1 YEAR
+            } //FIN BUCLE DE 1 MES
+        }     //FIN BUCLE DE 12 MESES
 
-        cout << "Si desea Formatear definitivamente los 12 meses registrados por el programa Ingrese: 0 " << endl;
-        cout << "Si desea continuar 12 meses mas Ingrese: 1" << endl;
+        cout << "Si desea Continuar en el siguiente Year, Ingrese 1" << endl;
         cin >> Continuar;
 
         if (Continuar == 1)
         {
-            cout<<endl;
-            cout<<"*********************************************************"<<endl;
-            cout << "El programa seguira en produccion por otros 12 meses" << endl;
-            YearInicio++;
-            cout << "Estos nuevos 12 meses perteneceran al Year: " << YearInicio << endl;
-            cout<<"*********************************************************"<<endl;
-            cout<<endl;
+            cout << endl;
+            cout << "++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+            cout << "Bienvenido, Podra seguir 12 meses mas " << endl;
+            cout << "++++++++++++++++++++++++++++++++++++++++++++++++++" << endl;
+            cout << endl;
+            cout << "PRUEBA DE NUEVO YEAR: " << Year << endl;
         }
         else
         {
-            cout<<endl;
-            cout<<"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"<<endl;
-            cout << "El programa no dara mas continuidad a lo realizado anteriormente." << endl;
-            cout << "Sin embargo, podra seguir usandose con el YearInicio que tiene por defecto." << endl;
-            cout<<"xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"<<endl;
-            cout<<endl;
+            cout << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << "El programa dejara de llevar continuidad, sin embargo podra seguir desde el Year por defecto" << endl;
+            cout << "---------------------------------------------------" << endl;
+            cout << endl;
         }
-    } while (Continuar == 1); //FIN DE 12 MESES
-} //FIN DE FUNCION TIEMPO
 
-//void Ordenar(string DiaNombre, int DiaNumero, string NombreMes) {}
+    } while (Continuar == 1); //ESTE BUCLE PERMITE AVANZAR AL SIGUIENTE YEAR
+
+    return 0;
+}
+
+string NombreMes(struct Fecha, int PosicionMes)
+{
+    Fecha GetMes;
+    string MesActual; //ALMACENA EL MES DE ACTUAL
+    switch (PosicionMes)
+    {
+    case 0:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES ENERO
+        break;
+    case 1:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES FEBRERO
+        break;
+    case 2:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES MARZO
+        break;
+    case 3:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES ABRIL
+        break;
+    case 4:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES MAYO
+        break;
+    case 5:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES JUNIO
+        break;
+    case 6:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES JULIO
+        break;
+    case 7:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES AGOSTO
+        break;
+    case 8:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES SEPTIEMBRE
+        break;
+    case 9:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES OCYUBRE
+        break;
+    case 10:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL MES NOVIEMBRE
+        break;
+    case 11:
+        MesActual = GetMes.Mes[PosicionMes]; //IDENTIFICADOR DEL NOMBRE DEL DIA DICIEMBRE
+        break;
+    }
+    PosicionMes++;
+
+    return MesActual;
+}
