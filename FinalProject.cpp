@@ -27,6 +27,13 @@ struct Inventario
     float Precios[8] = {0.75, 0.35, 0.50, 1.00, 0.35, 0.40, 0.50, 1.25};
 };
 
+//DECLARACION DE FUNCIONES FILES
+void ArchivoPedidos(string, int, float, int, int, int, int, string, int); //ArchivoPedidos()
+void LeerArchivoPedidos();
+string ObtenerArchivoPedidos();                  //ESTA FUNCION IRA DENTRO DE RegistroDiario(), LEERA
+void RegistroDiario(string fechaDia);
+//void LeerFichero();
+
 //DECLARACION DE FUNCIONES
 string NombreMes(struct Fecha, int PosicionesMes); //BUSCADOR DE NOMBRE DE MES
 bool InicioSesion(string Usuario, string Clave);
@@ -252,7 +259,10 @@ void InicioSesionAdmin(string Usuario, string Clave)
     {
         cout << "ACCESO CONCEDIDO" << endl;
         cout << endl;
-        //LeerFichero();
+        cout<<"++++++++++++++++++++++++++++++++++++++++++++++"<<endl;
+        cout<<"HISTORIAL DE REGISTROS"<<endl;
+        LeerArchivoPedidos();
+        cout<<"++++++++++++++++++++++++++++++++++++++++++++++"<<endl;
     }
     else
     {
@@ -308,7 +318,8 @@ void Ordenar(int Dia, string Mes, int Year)
                 cout << "Ingrese la cantidad de " << ItemNombre << endl;
                 cin >> CantItem; //PIDE LA CANTIDAD DE UN MISMO PRODUCTO DESEADO
 
-                /*LLAMAR A FUNCION CREAR FICHERO (AQUI)*/
+                //ESTA FUNCION RECIBE. DATOS: NOMBRE,CANT,PRECIO; CONTEO: DE PRODUCTOS, PEDIDOS, ORDEN Y LA FECHA.
+                ArchivoPedidos(ItemNombre, CantItem, ItemPrecio, ContProductos, ContPedidos, ContOrdenes, Dia, Mes, Year);
 
                 cout << "*************** FIN Ingreso de Pedido ***************" << endl;
 
@@ -342,6 +353,18 @@ void Ordenar(int Dia, string Mes, int Year)
         cout << endl;
         cin >> ContinuarOrden;
     } while (ContinuarOrden == 1); //FIN BUCLE ORDENES
+
+    string NombreFileDiario;       //SE CREARA REGISTRO DEL DIA
+    cout << endl;
+    cout << "PRUEBA: " << endl;
+    cout << "Se Creara un Archivo .txt con el REGISTRO DIARIO. Copie todo lo que esta entre signos < >" << endl;
+    cout << "Copie: < \"" << Dia << "/" << Mes << "/" << Year << "\"  >  (Incluir comillas dobles)" << endl;
+    cout << "Pege Aqui: ";
+    cin >> NombreFileDiario;
+
+    //RegistroDiario(NombreFileDiario);
+
+    cout << endl;
 }
 
 int BuscadorPosicion(string NombreItem, struct Inventario NombresProductos)
@@ -432,3 +455,95 @@ void MenuDesplegable()
     cout << "************************" << endl;
     cout << " " << endl;
 } //FIN MENU
+
+//DEFINICION DE FUNCIONES FILES 
+void ArchivoPedidos(string Nombre, int Cantidad, float Precio, int ContProducto, int ContPedido, int ContOrden, int DiaF, string Mes, int Year)
+{
+    //string CadenaDia = reinterpret_cast<string>(DiaF);
+    ofstream Archivo("RegistroPedidos.txt", ios::out | ios::app); //INSTANCIACION DE METODO PARA CREAR ARCHIVOS
+    //fail() es un metodo que comprobara si se crea el archivo
+    if (Archivo.fail() == true)
+    {
+        cout << "No se logro crear el archivo";
+        return;
+    }
+    else
+    {
+        // Insertar texto al fichero
+        Archivo << endl;
+        Archivo << "Fecha: " << DiaF << " / " << Mes << " / " << Year << endl;
+        Archivo << "-----------------------------------" << endl;
+        Archivo << "---------- ORDEN No: " << ContOrden << " -----------" << endl;
+        Archivo << "CLIENTE No: " << ContPedido << " - PEDIDO No: " << ContProducto << " (del dia)" << endl;
+        Archivo << "Nombre Producto: " << Nombre << endl;
+        Archivo << "Cantidad Producto: " << Cantidad << endl;
+        Archivo << "Precio Unitario Producto: " << Precio << endl;
+        Archivo << "-----------------------------------" << endl;
+        Archivo << endl;
+        ContProducto = 0;
+        // Cerrar la conexion con el fichero
+        Archivo.close();
+    }
+
+}
+
+void LeerArchivoPedidos()
+{
+    // Crear una variable para la salida del texto
+    string texto;
+    //ifstream fichero("prueba.txt");
+    ifstream Archivo("RegistroPedidos.txt", ios::in);
+    //Leer el fichero
+    while (getline(Archivo, texto))
+    {
+        // Salida
+        cout << texto<<endl;
+    }
+    // Cerrar la conexion con el fichero
+    Archivo.close();
+}
+
+//DEFINICION DE FUNCIONES FILES PARA ADMINISTRACION ESTAS DOS FUNCIONES ESTAN EN PROCESO
+/*string ObtenerArchivoPedidos(string LineasTexto)
+{
+    // Crear una variable para la salida del texto
+    
+        //ifstream fichero("prueba.txt");
+        ifstream ObteniendoArchivo("RegistroPedidos.txt", ios::in);
+    //Leer el fichero
+    while (getline(ObteniendoArchivo, LineasTexto))
+    {
+        // Salida
+        cout << LineasTexto << endl;
+    }
+    // Cerrar la conexion con el fichero
+    ObteniendoArchivo.close();
+
+    return LineasTexto;
+}
+*/
+/*
+void RegistroDiario(string fechaDia)
+{
+    string ExtrayendoLineas;
+    ObtenerArchivoPedidos();                    //EXTRAE CONTENIDO DE RegistroPedidos.txt
+    ExtrayendoLineas = ObtenerArchivoPedidos(); //SIRVE DE PUENTE PARA INSERTARLOS EN REGISTRO DIARIO
+
+    ofstream VentasDiarias("RegistroDiario.txt", ios::out | ios::app);
+    //Metodo para comprobar si se crea el archivo
+    if (VentasDiarias.fail() == true)
+    {
+        cout << "No se logro crear el archivo";
+        return;
+    }
+    else
+    {
+        //SE INSERTAN LAS LINEAS DE RegistroPedidos.txt EN RegistroDiario.txt
+        VentasDiarias << ExtrayendoLineas << endl;
+        // Cerrar la conexion con el fichero
+        VentasDiarias.close();
+    }
+}
+*/
+
+//

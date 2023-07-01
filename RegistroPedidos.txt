@@ -1,0 +1,40 @@
+
+Fecha: 1 / Enero / 2023
+-----------------------------------
+---------- ORDEN No: 1 -----------
+CLIENTE No: 1 - PEDIDO No: 1 (del dia)
+Nombre Producto: cafe
+Cantidad Producto: 3
+Precio Unitario Producto: 0.35
+-----------------------------------
+
+
+Fecha: 1 / Enero / 2023
+-----------------------------------
+---------- ORDEN No: 1 -----------
+CLIENTE No: 1 - PEDIDO No: 2 (del dia)
+Nombre Producto: licuado
+Cantidad Producto: 2
+Precio Unitario Producto: 1.25
+-----------------------------------
+
+
+Fecha: 1 / Enero / 2023
+-----------------------------------
+---------- ORDEN No: 1 -----------
+CLIENTE No: 2 - PEDIDO No: 3 (del dia)
+Nombre Producto: sandwich
+Cantidad Producto: 2
+Precio Unitario Producto: 0.75
+-----------------------------------
+
+
+Fecha: 1 / Enero / 2023
+-----------------------------------
+---------- ORDEN No: 1 -----------
+CLIENTE No: 2 - PEDIDO No: 4 (del dia)
+Nombre Producto: soda
+Cantidad Producto: 3
+Precio Unitario Producto: 0.5
+-----------------------------------
+
